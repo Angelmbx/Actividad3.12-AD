@@ -3,15 +3,17 @@ package modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import javax.persistence.*;
 
-
+@Entity
+@PrimaryKeyJoinColumn(name="empleados_id")
 public class Temporales extends Empleados implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4633591203267830174L;
-	private LocalDate fechaInicio;
+	private LocalDate fechaInicio; // al ser localDate no se usa @Temporal
 	private LocalDate fechaFin;
 	float pagoDia;
 	float suplemento;
@@ -44,7 +46,7 @@ public class Temporales extends Empleados implements Serializable {
 		
 		long diferenciaDias= ChronoUnit.DAYS.between(fechaInicio, fechaFin);
 		
-		float sueldo =pagoDia*(diferenciaDias)-pagoDia*(diferenciaDias)*this.getPorecentaRetencion()+this.getSuplemento();
+		float sueldo =pagoDia*(diferenciaDias)-pagoDia*(diferenciaDias)*this.getPorecentaRetencion()+suplemento;
 
 		return sueldo;
 	}

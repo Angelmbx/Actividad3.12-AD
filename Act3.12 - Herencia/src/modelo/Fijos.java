@@ -2,6 +2,10 @@ package modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.*;
+
+@Entity
+@PrimaryKeyJoinColumn(name="empleados_id") //aqui hay una relacion de herencia con el padre JOINED. Creamos una columna extra que crea una Foreign key que apunta a la primaria de empleados
 public class Fijos extends Empleados implements Serializable {
 
 	/**
@@ -14,6 +18,7 @@ public class Fijos extends Empleados implements Serializable {
 	
 	private int salarioBase;
 	private int trienios;
+	
 	public int getSalarioBase() {
 		return salarioBase;
 	}
@@ -32,6 +37,7 @@ public class Fijos extends Empleados implements Serializable {
 		
 				return sueldo;
 	}
+	
 	
 	
 	
